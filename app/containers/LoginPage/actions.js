@@ -4,10 +4,10 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import { POST_LOGIN_REQUEST } from './constants';
 
-export function defaultAction() {
+export function postLoginRequestAction() {
   return {
-    type: DEFAULT_ACTION,
+    type: POST_LOGIN_REQUEST,
   };
 }

@@ -1,23 +1,21 @@
 /**
  *
- * LoginPage
+ * RegisterPage
  *
  */
 
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { push } from 'connected-react-router';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { RoundButton, Logo, Input } from 'components';
-import makeSelectLoginPage from './selectors';
+import makeSelectRegisterPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import { postLoginRequestAction } from './actions';
 import {
   Wrapper,
   Header,
@@ -27,37 +25,22 @@ import {
   ImageWrapper,
   RightContent,
   LoginBox,
-} from './styles';
+} from '../LoginPage/styles';
 
-export function LoginPage({ pushUrl }) {
-  useInjectReducer({ key: 'loginPage', reducer });
-  useInjectSaga({ key: 'loginPage', saga });
-
-  const routeToRegister = () => {
-    pushUrl('/register');
-  };
-
-  const useEmailInput = () => {
-    const [email, setEmail] = useState('');
-    function onChangeInput(e) {
-      setEmail(e.target.value);
-    }
-    return {
-      value: email,
-      onChange: onChangeInput,
-    };
-  };
+export function RegisterPage() {
+  useInjectReducer({ key: 'registerPage', reducer });
+  useInjectSaga({ key: 'registerPage', saga });
 
   return (
     <Wrapper>
       <MainWrapper>
         <Header>
           <Logo />
-          <RoundButton title="가입하기" onClick={routeToRegister} />
+          <RoundButton title="가입하기" />
         </Header>
         <Body>
           <LoginBox>
-            <LoginBox.Header>Login to SEMS</LoginBox.Header>
+            <LoginBox.Header>Register to SEMS</LoginBox.Header>
             <Input placeholder="관 코드" />
             <Input placeholder="비밀번호" type="password" />
             <LoginBox.Footer>
@@ -83,19 +66,17 @@ export function LoginPage({ pushUrl }) {
   );
 }
 
-LoginPage.propTypes = {
-  pushUrl: PropTypes.func,
+RegisterPage.propTypes = {
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  loginPage: makeSelectLoginPage(),
+  registerPage: makeSelectRegisterPage(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    pushUrl: url => dispatch(push(url)),
-    postLogin: ({ email, password }) =>
-      dispatch(postLoginRequestAction({ email, password })),
+    dispatch,
   };
 }
 
@@ -107,4 +88,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(LoginPage);
+)(RegisterPage);
