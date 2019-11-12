@@ -13,8 +13,8 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { RoundButton, Logo, Input } from 'components';
-import makeSelectLoginPage from './selectors';
+import { RoundButton, Logo, Input, Toast } from 'components';
+import makeSelectLoginPage, { makeSelectFailed } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { postLoginRequestAction } from './actions';
@@ -29,7 +29,7 @@ import {
   LoginBox,
 } from './styles';
 
-export function LoginPage({ pushUrl }) {
+export function LoginPage({ pushUrl, postLogin, failed }) {
   useInjectReducer({ key: 'loginPage', reducer });
   useInjectSaga({ key: 'loginPage', saga });
 
@@ -45,11 +45,33 @@ export function LoginPage({ pushUrl }) {
     return {
       value: email,
       onChange: onChangeInput,
+      placeholder: '이메일',
     };
+  };
+
+  const usePasswordInput = () => {
+    const [password, setPassword] = useState('');
+    function onChangeInput(e) {
+      setPassword(e.target.value);
+    }
+    return {
+      value: password,
+      type: 'password',
+      onChange: onChangeInput,
+      placeholder: '비밀번호',
+    };
+  };
+
+  const emailProps = useEmailInput();
+  const passwordProps = usePasswordInput();
+
+  const onClickLogin = () => {
+    postLogin({ email: emailProps.value, password: passwordProps.value });
   };
 
   return (
     <Wrapper>
+      <Toast activate={failed} />
       <MainWrapper>
         <Header>
           <Logo />
@@ -58,10 +80,10 @@ export function LoginPage({ pushUrl }) {
         <Body>
           <LoginBox>
             <LoginBox.Header>Login to SEMS</LoginBox.Header>
-            <Input placeholder="관 코드" />
-            <Input placeholder="비밀번호" type="password" />
+            <Input {...emailProps} />
+            <Input {...passwordProps} />
             <LoginBox.Footer>
-              <RoundButton invert title="로그인" />
+              <RoundButton invert title="로그인" onClick={onClickLogin} />
             </LoginBox.Footer>
           </LoginBox>
         </Body>
@@ -84,11 +106,14 @@ export function LoginPage({ pushUrl }) {
 }
 
 LoginPage.propTypes = {
+  failed: PropTypes.bool,
   pushUrl: PropTypes.func,
+  postLogin: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   loginPage: makeSelectLoginPage(),
+  failed: makeSelectFailed(),
 });
 
 function mapDispatchToProps(dispatch) {

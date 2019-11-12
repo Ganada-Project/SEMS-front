@@ -29,10 +29,11 @@ const appReducer = (state = initialState, action) =>
     switch (action.type) {
       case GET_USER_INFO:
         draft.loading = true;
-        draft.error = false;
         break;
 
       case GET_USER_INFO_SUCCESS:
+        draft.userData = action.payload.user;
+        draft.loading = false;
         break;
 
       case GET_USER_INFO_ERROR:

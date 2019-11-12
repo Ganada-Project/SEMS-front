@@ -12,6 +12,7 @@ import {
 
 export const initialState = {
   loginLoading: false,
+  failed: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -26,6 +27,7 @@ const loginPageReducer = (state = initialState, action) =>
         break;
       case POST_LOGIN_FAIL:
         draft.loginLoading = false;
+        draft.failed = true;
         break;
     }
   });

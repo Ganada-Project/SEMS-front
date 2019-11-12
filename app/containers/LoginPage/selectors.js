@@ -21,5 +21,11 @@ const makeSelectLoginPage = () =>
     substate => substate,
   );
 
+const makeSelectFailed = () =>
+  createSelector(
+    selectLoginPageDomain,
+    substate => substate.failed,
+  );
+
 export default makeSelectLoginPage;
-export { selectLoginPageDomain };
+export { selectLoginPageDomain, makeSelectFailed };

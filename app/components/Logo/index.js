@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Icon from './Images/analytics.png';
 import { Wrapper, LogoImg, LogoText } from './styles';
 // import PropTypes from 'prop-types';
@@ -12,15 +13,17 @@ import { Wrapper, LogoImg, LogoText } from './styles';
 
 function Logo() {
   return (
-    <Wrapper>
-      <LogoImg>
-        <LogoImg.Icon src={Icon} />
-      </LogoImg>
-      <LogoText>
-        <LogoText.Main>SEMS</LogoText.Main>
-        <LogoText.Sub>Sumisa Exam Management System</LogoText.Sub>
-      </LogoText>
-    </Wrapper>
+    <Link to="/">
+      <Wrapper>
+        <LogoImg>
+          <LogoImg.Icon src={Icon} />
+        </LogoImg>
+        <LogoText>
+          <LogoText.Main>SEMS</LogoText.Main>
+          <LogoText.Sub>Sumisa Exam Management System</LogoText.Sub>
+        </LogoText>
+      </Wrapper>
+    </Link>
   );
 }
 

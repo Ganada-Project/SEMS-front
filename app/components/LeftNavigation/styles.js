@@ -78,7 +78,7 @@ LeftNavi.Item = styled.div`
     i {
       color: white;
     }
-    transition: 0.2s ease-in-out all;
+    transition: 0.4s ease-in-out all;
     z-index: 40;
       -webkit-box-shadow: 0px 2px 4px 0px rgba(238,120,96, 0.7);
   -moz-box-shadow: 0px 2px 4px 0px rgba(238,120,96, 0.7);
