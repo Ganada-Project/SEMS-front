@@ -15,7 +15,7 @@ function* postLoginSaga(action) {
   const { email, password } = action;
   const url = `${API_URL}/auth/login`;
   const payload = {
-    phone: email,
+    email,
     password,
   };
   try {

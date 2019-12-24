@@ -3,8 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR|Raleway&display=swap');  html,
   body {
-    height: 100vh;
-    width: 100vw;
+
     box-sizing: border-box
   }
 
@@ -17,8 +16,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #app {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
+    overflow-y: hidden;
+    overflow-x: hidden;
   }
 
   a {

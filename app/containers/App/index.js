@@ -26,6 +26,7 @@ import GradePage from 'containers/GradePage/Loadable';
 import ExamListPage from 'containers/ExamListPage/Loadable';
 import HistoryPage from 'containers/HistoryPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import AddRouter from 'containers/Routers/AddRouter';
 import { TopNavigation, LeftNavigation } from 'components';
 import { localStorageData } from '../../constants';
 
@@ -94,7 +95,7 @@ function App({ user }) {
             <PrivateRoute exact path="/" component={DashboardPage} />
             <PrivateRoute path="/grade" component={GradePage} />
             <PrivateRoute path="/history" component={HistoryPage} />
-            <PrivateRoute path="/exam" component={ExamListPage} />
+            <PrivateRoute path="/add" component={AddRouter} />
             <PublicRoute path="/login" component={LoginPage} />
             <PublicRoute path="/register" component={RegisterPage} />
             <Route component={NotFoundPage} />

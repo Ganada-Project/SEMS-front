@@ -15,7 +15,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectExamListPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import { Wrapper, Header, Body } from './styles';
+import { Wrapper, Header, Body, Folder } from './styles';
 
 export function ExamListPage() {
   useInjectReducer({ key: 'examListPage', reducer });
@@ -24,9 +24,11 @@ export function ExamListPage() {
   return (
     <Wrapper>
       <Header>
-        <Header.Title>Exams</Header.Title>
+        <Header.Title />
       </Header>
-      <Body />
+      <Body>
+        <Folder />
+      </Body>
     </Wrapper>
   );
 }

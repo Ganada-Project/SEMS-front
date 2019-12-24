@@ -57,7 +57,7 @@ LeftNavi.Item = styled.div`
   -webkit-transition-property: width; /* Safari */
   -webkit-transition-duration: 0.4s; /* Safari */
   -webkit-transform-style: ease-in;
-  transition: 0.4s ease-in width;
+  transition: 0.2s ease-in width;
   i {
     color: ${props => (!props.selected ? props.theme.mainColor : 'white')};
     text-align: center;
@@ -66,7 +66,7 @@ LeftNavi.Item = styled.div`
       content: '';
       margin-left: 4px;
       color: white;
-      transition: 0.4s ease-in all;
+      transition: 0.2s ease-in all;
   }
 
   :hover {
@@ -78,7 +78,7 @@ LeftNavi.Item = styled.div`
     i {
       color: white;
     }
-    transition: 0.4s ease-in-out all;
+    transition: 0.2s ease-in-out all;
     z-index: 40;
       -webkit-box-shadow: 0px 2px 4px 0px rgba(238,120,96, 0.7);
   -moz-box-shadow: 0px 2px 4px 0px rgba(238,120,96, 0.7);
@@ -87,7 +87,7 @@ LeftNavi.Item = styled.div`
       content: '${props => props.title}';
       margin-left: 4px;
       color: white;
-      transition: 0.4s ease-in all;
+      transition: 0.2s ease-in all;
     }
   }
 `;

@@ -11,7 +11,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { Icon } from 'semantic-ui-react';
 import { theme } from 'containers/App/constants';
 import { Wrapper, LeftNavi, NaviWrapper } from './styles';
-import { menu } from './confing';
+import { menu } from './config';
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
@@ -23,7 +23,7 @@ function LeftNavigation({ location }) {
         <NaviWrapper>
           {menu.map(x => (
             <Link to={`/${x.value}`} key={x.id}>
-              <LeftNavi.Item selected={target === x.value} title={x.name}>
+              <LeftNavi.Item selected={target === x.cssKey} title={x.name}>
                 <LeftNavi.ItemWrapper>
                   <Icon name={x.icon} size="big" />
                 </LeftNavi.ItemWrapper>
